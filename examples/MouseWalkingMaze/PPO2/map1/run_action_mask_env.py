@@ -27,18 +27,3 @@ model.learn(total_timesteps=2500000, tb_log_name='PPO2_map1' + model_tag)
 
 model.save(model_folder + "PPO2_map1" + model_tag)
 del model
-model = PPO2.load(model_folder + "PPO2_map1" + model_tag)
-
-done = False
-states = None
-action_masks = []
-obs = env.reset()
-
-while not done:
-    action, states = model.predict(obs, states, action_mask=action_masks)
-    obs, _, done, infos = env.step(action)
-    env.render()
-    action_masks.clear()
-    for info in infos:
-            env_action_mask = info.get('action_mask')
-            action_masks.append(env_action_mask) 
