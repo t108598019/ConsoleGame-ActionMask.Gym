@@ -25,6 +25,6 @@ if len(sys.argv) > 2:
 env = DummyVecEnv([lambda: BaseEnv()])
 
 model = PPO2(get_policy(policy), env, verbose=0, nminibatches=1, tensorboard_log=tensorboard_folder)
-model.learn(total_timesteps=10000, tb_log_name='PPO2' + model_tag)
+model.learn(total_timesteps=500000, tb_log_name='PPO2' + model_tag)
 
 model.save(model_folder + "PPO2" + model_tag)
