@@ -26,14 +26,3 @@ model = PPO2(get_policy(policy), env, verbose=0, nminibatches=1, tensorboard_log
 model.learn(total_timesteps=2500000, tb_log_name='PPO2_map1' + model_tag)
 
 model.save(model_folder + "PPO2_map1" + model_tag)
-del model
-model = PPO2.load(model_folder + "PPO2_map1" + model_tag)
-
-done = False
-states = None
-obs = env.reset()
-
-while not done:
-    action, states = model.predict(obs, states)
-    obs, _, done, info = env.step(action)
-    env.render()
