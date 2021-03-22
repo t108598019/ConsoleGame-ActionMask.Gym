@@ -16,5 +16,4 @@ jobs:
   - script: |
       cd /home/selab1421/Desktop/code/stable-baselines
       git checkout reward-correlation-0.0025
-      SB_PATH=/home/selab1421/Desktop/code/stable-baselines ./scripts/run_docker_gpu.sh python examples/EmptyRooms/PPO2/empty_map/run_base_env.py 
     displayName: 'Training'
