@@ -4,7 +4,7 @@
 # https://aka.ms/yaml
 
 trigger:
-- azure-pipelines
+- no-render
 
 pool: Default
 jobs:
