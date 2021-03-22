@@ -1,31 +1,17 @@
-variables:
-  DOCKER_IMAGE: ntutselab/stable-baselines-cpu:latest
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
 
+trigger:
+- azure-pipelines
+
+pool: Default
 jobs:
-- job: 'Ubuntu'
-  pool:
-    vmImage: 'ubuntu-latest'
-  steps:
-  - template: azure_templates/ubuntu_tests.yml
-    parameters:
-      DOCKER_IMAGE: $(DOCKER_IMAGE)
-
-- job: 'Windows'
-  pool:
-    vmImage: 'windows-latest'
+- job: 'EmptyRooms'
   strategy:
-    matrix:
-      Python36:
-        python.version: '3.6'
+    parallel: 5
+  timeoutInMinutes: 0 # how long to run the job before automatically cancelling
   steps:
-    - template: azure_templates/windows_tests.yml
-
-- job: 'MacOS'
-  pool:
-    vmImage: 'macOS-latest'
-  strategy:
-    matrix:
-      Python36:
-        python.version: '3.6'
-  steps:
-    - template: azure_templates/macos_tests.yml
+  - script: SB_PATH=/home/selab1421/Desktop/code/azure/myagent/_work/stable-baselines ./scripts/run_docker_gpu.sh python run_four_rooms.py
+    displayName: 'Training'
