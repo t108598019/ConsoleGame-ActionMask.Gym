@@ -14,8 +14,8 @@ jobs:
   timeoutInMinutes: 0 # how long to run the job before automatically cancelling
   steps:
   - script: |
-      $(System.DefaultWorkingDirectory)
+      WORK_DIR=`pwd`
       cd /home/selab1421/Desktop/code/stable-baselines
       git checkout reward-correlation-0.0025
-      SB_PATH=/home/selab1421/Desktop/code/stable-baselines ./scripts/run_docker_gpu.sh python examples/EmptyRooms/PPO2/empty_map/run_base_env.py 
+      cd $WORK_DIR
     displayName: 'Training'
