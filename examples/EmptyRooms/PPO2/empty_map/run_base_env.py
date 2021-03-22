@@ -7,7 +7,7 @@ from stable_baselines import PPO2
 from stable_baselines.common.vec_env import  DummyVecEnv
 from examples.utils.utils import get_policy
 
-tensorboard_folder = './tensorboard/EmptyRooms/base/'
+tensorboard_folder = '/root/code/stable_baselines/tensorboard/EmptyRooms/base/'
 model_folder = './models/EmptyRooms/base/'
 if not os.path.isdir(tensorboard_folder):
     os.makedirs(tensorboard_folder)
@@ -24,6 +24,6 @@ if len(sys.argv) > 2:
     mode = sys.argv[2]
 env = DummyVecEnv([lambda: BaseEnv()])
 
-model = PPO2(get_policy(policy), env, verbose=0, nminibatches=1, tensorboard_log=tensorboard_folder)
+model = PPO2(get_policy(policy), env, verbose=1, nminibatches=1, tensorboard_log=tensorboard_folder)
 model.learn(total_timesteps=1000000, tb_log_name='PPO2' + model_tag)
 

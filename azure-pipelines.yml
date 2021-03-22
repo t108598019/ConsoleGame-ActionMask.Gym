@@ -13,5 +13,5 @@ jobs:
     parallel: 5
   timeoutInMinutes: 0 # how long to run the job before automatically cancelling
   steps:
-  - script: SB_PATH=/home/selab1421/Desktop/code/azure/myagent/_work/stable-baselines ./scripts/run_docker_gpu.sh python examples/EmptyRooms/PPO2/empty_map/run_base_env.py 
+  - script: SB_PATH=/home/selab1421/Desktop/code/azure/stable-baselines ./scripts/run_docker_gpu.sh python examples/EmptyRooms/PPO2/empty_map/run_base_env.py 
     displayName: 'Training'
